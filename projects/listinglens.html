@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ListingLens is Berke Isler's housing research RAG project: grounded answers and comparisons from property listings."
+    />
+    <meta name="theme-color" content="#0b1320" />
+    <title>ListingLens — RAG Case Study | Berke Isler</title>
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body class="case-study-page">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header case-header" data-header>
+      <div class="shell nav-shell">
+        <a class="wordmark" href="../index.html" aria-label="Berke Isler, home">
+          <span class="wordmark-mark">BI</span>
+          <span class="wordmark-name">Berke Isler</span>
+        </a>
+        <a class="case-back" href="../index.html#work"><span aria-hidden="true">←</span> All projects</a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="case-hero">
+        <div class="shell">
+          <div class="case-breadcrumb"><span>Case study 01</span><span>RAG / Decision support</span></div>
+          <div class="case-hero-grid">
+            <div class="reveal">
+              <div class="status-pill case-status"><i></i> In development</div>
+              <h1>ListingLens</h1>
+              <p class="case-tagline">
+                From scattered housing listings to grounded, comparable decisions.
+              </p>
+            </div>
+            <div class="case-summary reveal">
+              <p>
+                A retrieval-augmented application for renters and buyers to question individual
+                properties, compare a shortlist, and trace every answer back to listing evidence.
+              </p>
+              <dl>
+                <div><dt>Role</dt><dd>End-to-end builder</dd></div>
+                <div><dt>Focus</dt><dd>RAG, extraction, evaluation</dd></div>
+                <div><dt>Stage</dt><dd>Architecture &amp; baseline</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section problem-section">
+        <div class="shell case-two-col">
+          <div class="case-label reveal"><span>01</span><p>The problem</p></div>
+          <div class="case-content reveal">
+            <h2>House hunting is a comparison problem disguised as a search problem.</h2>
+            <p class="large-copy">
+              Listing platforms help people discover properties. They are less useful once a
+              person has a shortlist and needs to reason across inconsistent descriptions,
+              hidden trade-offs, and dozens of attributes.
+            </p>
+            <div class="question-stack">
+              <blockquote>“Which of these homes gives me the best space for the total monthly cost?”</blockquote>
+              <blockquote>“What does this listing say about insulation, parking, and outdoor space?”</blockquote>
+              <blockquote>“What is missing or ambiguous enough that I should ask the agent?”</blockquote>
+            </div>
+            <div class="decision-statement">
+              <span>Product decision</span>
+              <p>
+                Build a source-grounded research assistant for a user’s saved shortlist—not a
+                generic real-estate recommendation engine.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section case-demo-section">
+        <div class="shell">
+          <div class="case-label light-case-label reveal"><span>02</span><p>The experience</p></div>
+          <div class="case-demo-grid">
+            <div class="case-demo-copy reveal">
+              <h2>Answers that show their work.</h2>
+              <p>
+                The interface separates extracted facts, listing-language evidence, and model
+                synthesis. Users can inspect the source behind a claim and see when information
+                is missing.
+              </p>
+              <ul class="check-list">
+                <li>Ask about one property or a saved shortlist</li>
+                <li>Compare normalized costs and features</li>
+                <li>Open the exact listing evidence for each claim</li>
+                <li>Surface conflicts, missing fields, and stale data</li>
+              </ul>
+            </div>
+            <div class="comparison-card reveal" aria-label="Illustrative property comparison">
+              <div class="comparison-top">
+                <span>SHORTLIST / 3 HOMES</span>
+                <span class="prototype-badge">Synthetic example</span>
+              </div>
+              <div class="comparison-question">Compare total cost, space, and commute.</div>
+              <div class="property-table" role="table" aria-label="Property comparison">
+                <div class="property-row property-head" role="row">
+                  <span role="columnheader">Listing</span><span role="columnheader">Cost</span>
+                  <span role="columnheader">Area</span><span role="columnheader">Commute</span>
+                </div>
+                <div class="property-row is-best" role="row">
+                  <strong role="cell">Linden</strong><span role="cell">€2,180</span>
+                  <span role="cell">82 m²</span><span role="cell">31 min</span>
+                </div>
+                <div class="property-row" role="row">
+                  <strong role="cell">Canal</strong><span role="cell">€2,420</span>
+                  <span role="cell">71 m²</span><span role="cell">19 min</span>
+                </div>
+                <div class="property-row" role="row">
+                  <strong role="cell">Park</strong><span role="cell">€2,290</span>
+                  <span role="cell">76 m²</span><span role="cell">26 min</span>
+                </div>
+              </div>
+              <div class="comparison-answer">
+                <span class="answer-icon">✦</span>
+                <p>
+                  <strong>Linden leads on value and space.</strong> Canal saves 12 minutes on the
+                  stated commute. Park is the middle option, but its service costs are not listed.
+                </p>
+              </div>
+              <div class="citation-row">
+                <span>[1] Price fields</span><span>[2] Floor area</span><span>[3] Transit estimate</span>
+              </div>
+            </div>
+          </div>
+          <p class="demo-disclaimer">All properties and figures above are synthetic and used only to illustrate the proposed interface.</p>
+        </div>
+      </section>
+
+      <section class="case-section architecture-section">
+        <div class="shell case-two-col">
+          <div class="case-label reveal"><span>03</span><p>System design</p></div>
+          <div class="case-content reveal">
+            <h2>Structured facts meet passage-level retrieval.</h2>
+            <p class="large-copy">
+              Property questions mix exact comparisons with ambiguous language. The system uses a
+              structured store for prices and attributes, plus hybrid retrieval over descriptions
+              for evidence that does not fit neatly into a schema.
+            </p>
+            <ol class="architecture-flow">
+              <li>
+                <span class="flow-number">01</span>
+                <div><h3>Ingest &amp; snapshot</h3><p>Save listing content with source URL, capture time, and a content fingerprint.</p></div>
+                <span class="flow-output">Raw snapshot</span>
+              </li>
+              <li>
+                <span class="flow-number">02</span>
+                <div><h3>Extract &amp; normalize</h3><p>Map price, area, rooms, amenities, and recurring costs into a common schema.</p></div>
+                <span class="flow-output">Property record</span>
+              </li>
+              <li>
+                <span class="flow-number">03</span>
+                <div><h3>Index evidence</h3><p>Chunk descriptions by semantic section and build lexical plus vector indexes.</p></div>
+                <span class="flow-output">Hybrid index</span>
+              </li>
+              <li>
+                <span class="flow-number">04</span>
+                <div><h3>Route &amp; retrieve</h3><p>Send calculations to structured queries and open questions to passage retrieval.</p></div>
+                <span class="flow-output">Evidence pack</span>
+              </li>
+              <li>
+                <span class="flow-number">05</span>
+                <div><h3>Generate &amp; verify</h3><p>Draft the answer, attach field-level citations, and flag unsupported claims.</p></div>
+                <span class="flow-output">Grounded answer</span>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section evaluation-section">
+        <div class="shell">
+          <div class="case-label light-case-label reveal"><span>04</span><p>Evaluation</p></div>
+          <div class="evaluation-intro reveal">
+            <h2>The demo is not done when the answer looks plausible.</h2>
+            <p>
+              The evaluation plan tests the full chain—from field extraction and evidence retrieval
+              to citation faithfulness and comparison correctness.
+            </p>
+          </div>
+          <div class="evaluation-grid">
+            <article class="eval-card reveal"><span>Data</span><h3>Attribute accuracy</h3><p>Precision and recall for prices, areas, costs, amenities, and missing-value detection.</p></article>
+            <article class="eval-card reveal"><span>Retrieval</span><h3>Evidence recall@k</h3><p>Whether the answer-bearing listing section appears in the retrieved evidence set.</p></article>
+            <article class="eval-card reveal"><span>Generation</span><h3>Citation faithfulness</h3><p>Whether each claim is entailed by its cited listing field or passage.</p></article>
+            <article class="eval-card reveal"><span>Product</span><h3>Comparison correctness</h3><p>Accuracy on deterministic trade-offs, missing data, and conflicting listing claims.</p></article>
+            <article class="eval-card reveal"><span>Operations</span><h3>Latency &amp; cost</h3><p>End-to-end response time and model cost by question type and shortlist size.</p></article>
+            <article class="eval-card reveal"><span>Safety</span><h3>Abstention quality</h3><p>How reliably the system says “not in the listing” instead of filling the gap.</p></article>
+          </div>
+          <div class="honesty-note reveal">
+            <strong>Current status</strong>
+            <p>Metrics will be published here only after a versioned evaluation set and reproducible baseline exist.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section roadmap-section">
+        <div class="shell case-two-col">
+          <div class="case-label reveal"><span>05</span><p>Build plan</p></div>
+          <div class="case-content reveal">
+            <h2>Four milestones to a credible first release.</h2>
+            <div class="roadmap-list">
+              <article><span>01</span><div><p class="roadmap-state current">Current</p><h3>Data contract &amp; baseline</h3><p>Create a synthetic/public sample, define the listing schema, and benchmark lexical retrieval.</p></div></article>
+              <article><span>02</span><div><p class="roadmap-state">Next</p><h3>Grounded property Q&amp;A</h3><p>Add hybrid retrieval, citations, freshness metadata, and explicit abstention behavior.</p></div></article>
+              <article><span>03</span><div><p class="roadmap-state">Then</p><h3>Shortlist comparison</h3><p>Route calculations through structured data and generate comparable trade-off summaries.</p></div></article>
+              <article><span>04</span><div><p class="roadmap-state">Release</p><h3>Evaluation &amp; deployment</h3><p>Publish the evaluation set, failure analysis, monitored demo, and complete technical write-up.</p></div></article>
+            </div>
+            <div class="constraint-box">
+              <h3>Data responsibility</h3>
+              <p>
+                The first release will use synthetic, user-provided, or explicitly permitted listing
+                data. Source terms, personal data, update frequency, and deletion behavior are product
+                requirements—not cleanup tasks.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-cta">
+        <div class="shell reveal">
+          <p class="section-kicker">Follow the build</p>
+          <h2>From architecture to evidence.</h2>
+          <p>The repository will contain the data contract, retrieval baseline, evaluation set, and build log.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="https://github.com/berkisler" target="_blank" rel="noreferrer">View GitHub profile ↗</a>
+            <a class="text-link light-link" href="../index.html#contact">Contact Berke →</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer case-footer">
+      <div class="shell footer-inner">
+        <span>© <span data-year></span> Berke Isler</span>
+        <span>ListingLens · Case study 01</span>
+        <a href="#main">Back to top ↑</a>
+      </div>
+    </footer>
+    <script type="module" src="../profile.js"></script>
+    <script type="module" src="../script.js"></script>
+  </body>
+</html>
