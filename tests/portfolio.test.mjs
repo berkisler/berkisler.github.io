@@ -56,7 +56,7 @@ test("résumé contact details are enabled and point to verified destinations", 
   assert.equal(linkedin.href, "https://linkedin.com/in/berk-isler");
   assert.equal(email.href, "mailto:berk.isler94@gmail.com");
   assert.match(resume.href, /assets\/Berk-isler-resume\.pdf$/);
-  assert.equal(resume.getAttribute("download"), "Berk-Isler-Resume.pdf");
+  assert.equal(resume.getAttribute("download"), "Berk-isler-resume.pdf");
 });
 
 test("case study labels all prototype housing data as synthetic", async () => {

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && mkdir -p dist/assets && cp assets/Berk-isler-resume.pdf dist/assets/Berk-isler-resume.pdf",
     "preview": "vite preview",
     "test": "node --test tests/*.test.mjs"
   },
