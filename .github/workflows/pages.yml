@@ -48,7 +48,7 @@ jobs:
         run: |
           test -f dist/index.html
           test -f dist/projects/listinglens.html
-          test -f dist/assets/berke-isler-resume.pdf
+          test -f dist/assets/Berk-isler-resume.pdf
 
       - name: Configure GitHub Pages
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
