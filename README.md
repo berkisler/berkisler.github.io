@@ -1,4 +1,4 @@
-# Berke Isler — ML & AI portfolio
+# Berk Isler — ML & AI portfolio
 
 A dependency-free, responsive portfolio built for GitHub Pages. The lead case study,
 **ListingLens**, documents a RAG application for housing research and shortlist comparison.
@@ -20,11 +20,11 @@ window.PORTFOLIO_PROFILE = {
   github: "https://github.com/berkisler",
   linkedin: "https://linkedin.com/in/berk-isler",
   email: "berk.isler94@gmail.com",
-  resume: "assets/berke-isler-resume.pdf",
+  resume: "assets/Berk-isler-resume.pdf",
 };
 ```
 
-The résumé PDF is stored at `assets/berke-isler-resume.pdf`. Empty values remain visibly but
+The résumé PDF is stored at `assets/Berk-isler-resume.pdf`. Empty values remain visibly but
 intentionally disabled, so the published site never contains guessed personal details.
 
 ## Preview locally

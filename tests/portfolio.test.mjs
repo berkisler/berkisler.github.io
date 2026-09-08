@@ -55,8 +55,8 @@ test("résumé contact details are enabled and point to verified destinations", 
   const resume = dom.window.document.querySelector('[data-profile-link="resume"]');
   assert.equal(linkedin.href, "https://linkedin.com/in/berk-isler");
   assert.equal(email.href, "mailto:berk.isler94@gmail.com");
-  assert.match(resume.href, /assets\/berke-isler-resume\.pdf$/);
-  assert.equal(resume.getAttribute("download"), "Berke-Isler-Resume.pdf");
+  assert.match(resume.href, /assets\/Berk-isler-resume\.pdf$/);
+  assert.equal(resume.getAttribute("download"), "Berk-isler-resume.pdf");
 });
 
 test("case study labels all prototype housing data as synthetic", async () => {

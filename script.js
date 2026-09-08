@@ -100,7 +100,7 @@ document.querySelectorAll("[data-profile-link]").forEach((link) => {
       if (label) label.textContent = "View profile ↗";
     }
     if (key === "resume") {
-      link.setAttribute("download", "Berke-Isler-Resume.pdf");
+      link.setAttribute("download", "Berk-isler-resume.pdf");
       if (label) label.textContent = "Download PDF ↓";
     }
   }
